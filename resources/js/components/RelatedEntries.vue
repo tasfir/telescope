@@ -37,6 +37,10 @@ export default {
 
 
     methods: {
+        allQueriesText(entries) {
+            return entries.map(entry => entry.content.sql + ';').join('\n');
+        },
+
         activateFirstTab(){
             if (window.location.hash) {
                 this.currentTab = window.location.hash.substring(1);
@@ -327,6 +331,9 @@ export default {
                         <th class="text-right">
                             Duration<br /><small>{{ queriesSummary.time }}ms</small>
                         </th>
+                        <th class="table-fit">
+                            <copy-icon-button v-if="queries.length" :text="allQueriesText(queries)" title="Copy All" />
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -342,6 +349,10 @@ export default {
                             </span>
 
                             <span v-else class="text-muted"> {{ entry.content.time }}ms </span>
+                        </td>
+
+                        <td class="table-fit">
+                            <copy-icon-button :text="entry.content.sql" title="Copy" />
                         </td>
 
                         <td class="table-fit">
