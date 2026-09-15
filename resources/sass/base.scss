@@ -320,6 +320,12 @@ button:hover {
     background: $new-code-entries-bg;
 }
 
+@for $i from 1 through length($duplicate-query-colors) {
+    .dup-color-#{$i} {
+        background: nth($duplicate-query-colors, $i);
+    }
+}
+
 #indexScreen {
     td {
         vertical-align: middle !important;

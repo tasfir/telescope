@@ -148,6 +148,22 @@ export default {
             };
         },
 
+        queryDuplicateColorClasses() {
+            const groups = _.groupBy(this.queries, (q) => `${q.content.hash}-${q.content.connection}`);
+            const classes = {};
+            let colorIndex = 0;
+
+            _.forEach(groups, (entries) => {
+                if (entries.length > 1) {
+                    const className = `dup-color-${(colorIndex % 3) + 1}`;
+                    entries.forEach((entry) => { classes[entry.id] = className; });
+                    colorIndex++;
+                }
+            });
+
+            return classes;
+        },
+
         tabs(){
             return _.filter([
                 {title: "Exceptions", type: "exceptions", count: this.exceptions.length},
@@ -315,7 +331,7 @@ export default {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="entry in queries">
+                    <tr v-for="entry in queries" :class="queryDuplicateColorClasses[entry.id]">
                         <td :title="entry.content.sql">
                             <code>{{ truncate(entry.content.sql, 110) }}</code>
                         </td>
