@@ -1,13 +1,24 @@
 <script type="text/ecmascript-6">
-export default {}
+export default {
+    methods: {
+        allQueriesText(entries) {
+            return entries.map(entry => entry.content.sql + ';').join('\n');
+        }
+    }
+}
 </script>
 
 <template>
     <index-screen title="Queries" resource="queries">
+        <div slot="header-actions" slot-scope="slotProps" class="mr-2" v-if="slotProps.entries.length > 0">
+            <copy-icon-button :text="allQueriesText(slotProps.entries)" title="Copy All" />
+        </div>
+
         <tr slot="table-header">
             <th scope="col">Query</th>
             <th scope="col" class="text-right">Duration</th>
             <th scope="col">Happened</th>
+            <th scope="col"></th>
             <th scope="col"></th>
         </tr>
 
@@ -30,6 +41,10 @@ export default {}
                 :title="slotProps.entry.created_at"
             >
                 {{ timeAgo(slotProps.entry.created_at) }}
+            </td>
+
+            <td class="table-fit">
+                <copy-icon-button :text="slotProps.entry.content.sql" title="Copy" />
             </td>
 
             <td class="table-fit">
