@@ -331,10 +331,10 @@ export default {
                         <th class="text-right">
                             Duration<br /><small>{{ queriesSummary.time }}ms</small>
                         </th>
-                        <th class="table-fit">
+                        <th class="table-fit icon-col">
                             <copy-icon-button v-if="queries.length" :text="allQueriesText(queries)" title="Copy All" />
                         </th>
-                        <th class="table-fit">
+                        <th class="table-fit icon-col">
                             <router-link :to="{ name: 'queries' }" target="_blank" class="control-action" title="Open Queries in new tab">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width: 1.25rem; height: 1.25rem">
                                     <path
@@ -345,7 +345,6 @@ export default {
                                 </svg>
                             </router-link>
                         </th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -362,11 +361,11 @@ export default {
                             <span v-else class="text-muted"> {{ entry.content.time }}ms </span>
                         </td>
 
-                        <td class="table-fit">
+                        <td class="table-fit icon-col">
                             <copy-icon-button :text="entry.content.sql" title="Copy" />
                         </td>
 
-                        <td class="table-fit">
+                        <td class="table-fit icon-col">
                             <router-link
                                 :to="{
                                     name: 'query-preview',

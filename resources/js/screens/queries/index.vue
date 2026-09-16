@@ -18,8 +18,8 @@ export default {
             <th scope="col">Query</th>
             <th scope="col" class="text-right">Duration</th>
             <th scope="col">Happened</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th scope="col" class="table-fit icon-col"></th>
+            <th scope="col" class="table-fit icon-col"></th>
         </tr>
 
         <template slot="row" slot-scope="slotProps">
@@ -43,11 +43,11 @@ export default {
                 {{ timeAgo(slotProps.entry.created_at) }}
             </td>
 
-            <td class="table-fit">
+            <td class="table-fit icon-col">
                 <copy-icon-button :text="slotProps.entry.content.sql" title="Copy" />
             </td>
 
-            <td class="table-fit">
+            <td class="table-fit icon-col">
                 <router-link
                     :to="{
                         name: 'query-preview',

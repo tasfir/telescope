@@ -144,6 +144,12 @@ svg.icon {
             width: 1%;
             white-space: nowrap;
         }
+
+        th.icon-col,
+        td.icon-col {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
     }
 }
 
